@@ -1,19 +1,12 @@
 var readlineSync = require("readline-sync");
-
+var chalk = require ("chalk");
 var score = 0;
 
-var name = readlineSync.question("what is your name?");
+var name = readlineSync.question(" Hello!,what is your name?");
 
 console.log(" welcome!" + name);
-console.log(" let's see how well do you know               Shivangi!");
+console.log(chalk.bgBlue(" let's see how well do you know Shivangi!"));
 
-var highScore = [{
- name: "akash",
- score:10,},  {
-   name:"ashi",
-   score:10,
- 
-}]
 
 function play(question , answer) {
   var userAnswer = readlineSync.question(question);
@@ -47,7 +40,14 @@ function play(question , answer) {
   var questions = [{ question: "where do i live?", answer:"chandigarh"
   },
   
-  { question:"where do i study?", answer:"cu"}]; 
+  { question:"where do i study?", answer:"cu"},
+  
+  { question:"what is my favorite color?", answer:"red"},
+  { question:"what is my favorite waffer?", answer:"munch"},
+  { question:"Do i like watching movies?", answer:"yes"},
+  
+  
+  ]; 
  
  
   for( var i=0; i<questions.length; i++) {
@@ -56,5 +56,34 @@ play(currentQuestion.question , currentQuestion.answer);
   }
   console.log("final score:" , score);
   console.log("check the high score!");
-   console.log(highScore[0]);
   
+  //array of highscore
+highScore = [
+    {
+        username: "shruti",
+        point: 4
+    },
+   
+    {
+        username: "abhi",
+        point: 3
+    },
+];
+//displaying highscore
+console.log(chalk.bgRed(" High Score "));
+console.table(highScore);
+// getting high score
+var max = highScore[0].point;
+for (let i = 1; i < highScore.length; i++) {
+  if (highScore[i].point > max) {
+    max = highScore[i].point;
+  }
+}
+//checking if user beat the hihg score
+if(score>max){
+    console.log(chalk.inverse.bold("\n Congrats u beat high score \n"));
+}
+else{
+    console.log(chalk.inverse.bold("\n Pay attention Next Time \n"));
+
+}
